@@ -105,6 +105,8 @@ class Quiz_model:
 
     def view_quiz(self, id):
         quiz = self.get_quiz(id)
+        if(len(quiz) == 0):
+            return "This is not valid id"
         #delete ids
         del quiz["id"]
         for question in quiz['questions']:
