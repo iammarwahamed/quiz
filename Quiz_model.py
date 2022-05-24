@@ -1,5 +1,6 @@
 import sqlite3
 from fastapi import  Request
+from sqlalchemy import false
 from Quiz_classes import Answer, Question, Quiz
 
 class Quiz_model:
@@ -114,15 +115,21 @@ class Quiz_model:
         return quiz
 
     def solve_quiz(self, questions_solved: dict ):
-        count = 0
+        correct_count = 0
         for question_solved in questions_solved['questions']:
-            query = f'SELECT correct_answer_id FROM  QUESTIONS WHERE id = "{question_solved["question_id"]}";'
-            self.cur.execute(query)
-            correct_answer_id = self.cur.fetchone()
-            if(correct_answer_id["correct_answer_id"] == question_solved["answer_id"]):
-                count = count+1
+            if(self.is_valid_answer(question_solved["question_id"], question_solved["answer_id"])):
+                correct_count = correct_count+1
+        totalQuestions = len(questions_solved['questions'])
 
-        return count  
+        return f'you got "{correct_count}" out of "{totalQuestions}"'
+
+    def is_valid_answer(self, question_id: int, answer_id: int):
+        query = f'SELECT * FROM  QUESTIONS WHERE id = {question_id} AND correct_answer_id = {answer_id};'
+        self.cur.execute(query)
+        if (self.cur.fetchone() is None):
+            return False
+        return True
+
     def create_demo(self):
         #self.cur.execute('DROP TABLE IF EXISTS ANSWERS')
         #self.cur.execute('DROP TABLE IF EXISTS QUESTIONS')

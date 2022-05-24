@@ -34,7 +34,7 @@ async def add_quiz(quiz: Quiz):
 async def view_quiz(id: int):
     return quiz_model.view_quiz(id)
 
-@app.put("/quiz/solve", status_code=status.HTTP_201_CREATED, tags=['quiz'])
+@app.post("/quiz/solve", status_code=status.HTTP_201_CREATED, tags=['quiz'])
 async def solve_quiz(questions_solved: dict):
     return quiz_model.solve_quiz(questions_solved)
 
