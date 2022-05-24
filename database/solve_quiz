@@ -1,0 +1,14 @@
+
+{
+    "quiz_id": 1,
+    "questions": [
+      {
+        "question_id": 1,
+         "answer_id": 1
+      },
+      {
+        "question_id": 4,
+        "answer_id": 2
+      }
+    ]
+  }
