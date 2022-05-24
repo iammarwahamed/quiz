@@ -15,10 +15,10 @@ quiz_model = Quiz_model()
 
 
 #http://127.0.0.1:8000/createDemo
-@app.get("/createDemo",status_code=status.HTTP_200_OK)
-async def create_demo():
-    quiz_model.create_demo()
-    return quiz_model.get_quizzes()
+# @app.get("/createDemo",status_code=status.HTTP_200_OK)
+# async def create_demo():
+#     quiz_model.create_demo()
+#     return quiz_model.get_quizzes()
 
 
 #http://127.0.0.1:8000/list

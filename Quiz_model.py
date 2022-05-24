@@ -131,9 +131,6 @@ class Quiz_model:
         return True
 
     def create_demo(self):
-        #self.cur.execute('DROP TABLE IF EXISTS ANSWERS')
-        #self.cur.execute('DROP TABLE IF EXISTS QUESTIONS')
-        #self.cur.execute('DROP TABLE IF EXISTS QUIZZES')
         self.cur.execute('CREATE TABLE QUIZZES (id INTEGER PRIMARY KEY,  NAME TEXT(40));')
         self.cur.execute('INSERT INTO QUIZZES VALUES (1,"Quiz 1");')
         self.cur.execute('INSERT INTO QUIZZES VALUES (2,"Quiz 2");')
